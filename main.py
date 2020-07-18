@@ -32,7 +32,7 @@ class LZPublicResourcesSpider():
     def get_project_info(self, project_id, project_url):
         try:
             project_info = requests.get(self.project_info_api.format(project_id)).json()["ret"]
-        except:
+        except Exception:
             pass
         else:
             try:
