@@ -54,7 +54,6 @@ class LZPublicResourcesSpider():
             url = self.start_url.format(i)
             if self.get_project_id(url) == '404':
                 break
-        print(self.project_info)
         print("爬取完毕！")
         db = self.client.lz_public_resource  # 连接lz_public_resource数据库
         my_set = db.project_data  # 创建数据表
