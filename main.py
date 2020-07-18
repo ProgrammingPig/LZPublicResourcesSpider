@@ -1,60 +1,6 @@
-# #!/usr/bin/env python
-# # -*- coding: utf-8 -*-
-# # @Time    : 2020/7/18 14:32
-# # @Author  : Mikey Yang
-# # @File    : main.py
-# # @Software: PyCharm
-#
-#
-# import requests, re,json
-# from lxml import etree
-#
-#
-# class LZPublicResourcesSpider():
-#     def __init__(self):
-#         self.start_url = "http://lzggzyjy.lanzhou.gov.cn/xqfzx/014001/{}.html"
-#         self.project_info_api = "http://lzggzyjy.lanzhou.gov.cn/detailjson/getallprocessdetailInfo/1{}.json"
-#         self.bidding_file_api1 = "http://lzggzyjy.lanzhou.gov.cn/detailjson/getallprocessdetailInfo/3{}.json"
-#         self.bidding_file_api2 = "http://lzggzyjy.lanzhou.gov.cn/EpointWebBuilder/BulletinWebServer.action?cmd=getallprocessdetailInfonew&infoid={}&strStep=3"
-#         self.project_info = {}
-#
-#     def get_project_id(self, url):
-#         res = requests.get(url).content.decode()
-#         html = etree.HTML(res)
-#         project_url_list = html.xpath("//div[@class='ewb-work-block l']/a/@href")
-#         for project_url in project_url_list:
-#             project_id = re.findall("/\d{8}/(.*?).html", project_url)
-#             self.get_project_info(project_id[0],project_url)
-#
-#     def get_project_info(self, project_id,project_url):
-#         res = requests.get(self.project_info_api.format(project_id)).json()
-#         self.project_info[project_id] = {}
-#         self.project_info[project_id]["project_info"] = res["ret"]
-#         self.get_project_bidding_info(project_id,project_url)
-#
-#     def get_project_bidding_info(self, project_id,project_url):
-#         try:
-#             res = requests.get(self.bidding_file_api1.format(project_id)).json()
-#         except Exception:
-#             res = requests.get("http://lzggzyjy.lanzhou.gov.cn"+project_url).content.decode()
-#             infoid = re.findall('<input type="hidden" id="ztbguid" value="(.*?)"/>',res)[0]
-#             res = requests.get(self.bidding_file_api2.format(infoid)).json()
-#             res = json.loads(res["custom"])
-#         self.project_info[project_id]["project_bidding_info"] = res["ret"]
-#
-#     def main(self):
-#         for i in range(1, 2):
-#             url = self.start_url.format(i)
-#             self.get_project_id(url)
-#         print(self.project_info)
-#
-#
-# if __name__ == '__main__':
-#     public_resource_spider = LZPublicResourcesSpider()
-#     public_resource_spider.main()
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2020/7/18 14:32
+# @Time    : 2020/7/18 18:32
 # @Author  : Mikey Yang
 # @File    : main.py
 # @Software: PyCharm
