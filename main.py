@@ -58,6 +58,7 @@ class LZPublicResourcesSpider():
         db = self.client.lz_public_resource  # 连接lz_public_resource数据库
         my_set = db.project_data  # 创建数据表
         my_set.insert_many(self.project_info)  # 一次写入所有数据
+        print("写入数据库完毕")
 
 
 if __name__ == '__main__':
